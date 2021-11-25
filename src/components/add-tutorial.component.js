@@ -6,12 +6,19 @@ export default class AddTutorial extends Component {
     super(props);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
+
+    this.onChangeName = this.onChangeName.bind(this);
+    this.onChangeText = this.onChangeText.bind(this);
+    
+
     this.saveTutorial = this.saveTutorial.bind(this);
     this.newTutorial = this.newTutorial.bind(this);
 
     this.state = {
       title: "",
       description: "",
+      name:"",
+      text:"",
       published: false,
 
       submitted: false,
@@ -24,6 +31,18 @@ export default class AddTutorial extends Component {
     });
   }
 
+  onChangeName(e) {
+    this.setState({
+      name: e.target.value,
+    });
+  }
+
+  onChangeText(e) {
+    this.setState({
+      text: e.target.value,
+    });
+  }
+
   onChangeDescription(e) {
     this.setState({
       description: e.target.value,
@@ -32,9 +51,11 @@ export default class AddTutorial extends Component {
 
   saveTutorial() {
     let data = {
-      text: this.state.title,
+      title: this.state.title,
       description: this.state.description,
-      published: false
+      published: false,
+      name: this.state.name,
+      text: this.state.text,
     };
 
     TutorialDataService.create(data)
@@ -53,6 +74,8 @@ export default class AddTutorial extends Component {
     this.setState({
       title: "",
       description: "",
+      name:"",
+      text:"",
       published: false,
 
       submitted: false,
@@ -86,7 +109,7 @@ export default class AddTutorial extends Component {
 
             <div className="form-group">
               <label htmlFor="description">Description</label>
-              <input
+              <textarea
                 type="text"
                 className="form-control"
                 id="description"
@@ -94,6 +117,32 @@ export default class AddTutorial extends Component {
                 value={this.state.description}
                 onChange={this.onChangeDescription}
                 name="description"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="description">name</label>
+              <textarea
+                type="text"
+                className="form-control"
+                id="name"
+                required
+                value={this.state.name}
+                onChange={this.onChangeName}
+                name="name"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="description">text</label>
+              <textarea
+                type="text"
+                className="form-control"
+                id="text"
+                required
+                value={this.state.text}
+                onChange={this.onChangeText}
+                name="text"
               />
             </div>
 

@@ -6,6 +6,10 @@ export default class Tutorial extends Component {
     super(props);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangeName = this.onChangeName.bind(this);
+    this.onChangeText = this.onChangeText.bind(this);
+    
+
     this.updatePublished = this.updatePublished.bind(this);
     this.updateTutorial = this.updateTutorial.bind(this);
     this.deleteTutorial = this.deleteTutorial.bind(this);
@@ -14,6 +18,8 @@ export default class Tutorial extends Component {
       currentTutorial: {
         key: null,
         title: "",
+        name:"",
+        text:"",
         description: "",
         published: false,
       },
@@ -47,6 +53,30 @@ export default class Tutorial extends Component {
       currentTutorial: {
         ...prevState.currentTutorial,
         title: title,
+      },
+    }));
+  }
+
+  onChangeName(e) {
+    const name = e.target.value;
+    //alert(title)
+    this.setState((prevState) => ({
+     // console.log(prevState)
+      currentTutorial: {
+        ...prevState.currentTutorial,
+        name: name,
+      },
+    }));
+  }
+
+  onChangeText(e) {
+    const text = e.target.value;
+    //alert(title)
+    this.setState((prevState) => ({
+     // console.log(prevState)
+      currentTutorial: {
+        ...prevState.currentTutorial,
+        text: text,
       },
     }));
   }
@@ -87,6 +117,8 @@ export default class Tutorial extends Component {
     }
 ///alert(JSON.stringify(this.state.currentTutorial))
     const data = {
+      name: this.state.currentTutorial.name,
+      text: this.state.currentTutorial.text,
       title: this.state.currentTutorial.title,
       description: this.state.currentTutorial.description,
     };
@@ -134,7 +166,7 @@ export default class Tutorial extends Component {
               </div>
               <div className="form-group">
                 <label htmlFor="description">Description</label>
-                <input
+                <textarea
                   type="text"
                   className="form-control"
                   id="description"
@@ -142,7 +174,26 @@ export default class Tutorial extends Component {
                   onChange={this.onChangeDescription}
                 />
               </div>
-
+              <div className="form-group">
+                <label htmlFor="description">name</label>
+                <textarea
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  value={currentTutorial.name}
+                  onChange={this.onChangeName}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="description">text</label>
+                <textarea
+                  type="text"
+                  className="form-control"
+                  id="text"
+                  value={currentTutorial.text}
+                  onChange={this.onChangeText}
+                />
+              </div>
               <div className="form-group">
                 <label>
                   <strong>Status:</strong>

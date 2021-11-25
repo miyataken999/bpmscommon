@@ -23,6 +23,11 @@ class App extends Component {
               </Link>
             </li>
             <li className="nav-item">
+              <Link to={"/4444"} className="nav-link">
+                Tutorials4444
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link to={"/add"} className="nav-link">
                 Add
               </Link>
@@ -34,6 +39,7 @@ class App extends Component {
           <h2>React Firebase Database CRUD</h2>
           <Switch>
             <Route exact path={["/", "/tutorials"]} component={TutorialsList} />
+            <Route exact path={["/4444"]} component={TutorialsList} />
             <Route exact path="/add" component={AddTutorial} />
           </Switch>
         </div>

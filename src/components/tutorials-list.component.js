@@ -36,6 +36,8 @@ export default class TutorialsList extends Component {
       tutorials.push({
         key: key,
         title: data.title,
+        name:data.name,
+        text:data.text,
         description: data.description,
         published: data.published,
       });
@@ -93,6 +95,9 @@ export default class TutorialsList extends Component {
                   <div>{tutorial.key}</div>
                   <div dangerouslySetInnerHTML={{ __html: tutorial.title }}></div>
                   <div dangerouslySetInnerHTML={{ __html: tutorial.description }}></div>
+                  <div dangerouslySetInnerHTML={{ __html: tutorial.name }}></div>
+                  <div dangerouslySetInnerHTML={{ __html: tutorial.text }}></div>
+                  
 
                 </li>
               ))
